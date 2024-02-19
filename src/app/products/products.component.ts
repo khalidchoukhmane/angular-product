@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
+import {Product} from "../model/product.model";
 
 @Component({
   selector: 'app-products',
@@ -9,22 +10,15 @@ import {ProductService} from "../services/product.service";
 })
 export class ProductsComponent implements OnInit{
 
-  products : Array<any> = [];
+  products : Array<Product> = [];
   constructor(private productService : ProductService) {
   }
   ngOnInit() {
-    /*this.http.get<Array<any>>("http://localhost:8089/products")
-      .subscribe({
-        next: data => this.products = data,
-        error: err => {
-          console.log(err)
-        }
-      })*/
     this.getProducts();
   }
 
   getProducts(){
-    this.productService.getProduct()
+    this.productService.getProducts()
       .subscribe({
         next: data => this.products = data,
         error: err => {
@@ -33,7 +27,7 @@ export class ProductsComponent implements OnInit{
       })
   }
 
-  handleCheckProduct(product: any) {
+  handleCheckProduct(product: Product) {
     //we used patch here because we only need to change one thing that checked value.
     this.productService.checkProduct(product)
       .subscribe({

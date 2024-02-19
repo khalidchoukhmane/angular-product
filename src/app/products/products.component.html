@@ -9,7 +9,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let product of products">
-              <td>{{product.name}}</td> <td>{{product.price}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
               <td><button  (click)="handleCheckProduct(product)"
                 class="btn btn-outline-success">
                 <i [class]="product.checked?'bi bi-check':'bi bi-circle'"></i>
