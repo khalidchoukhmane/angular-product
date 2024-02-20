@@ -14,6 +14,9 @@ export class ProductsComponent implements OnInit{
   //products$! : Observable<Array<Product>>;
   public products : Array<Product> = [];
   public keyword : string = "";
+  totalPages: number = 0;
+  pageSize: number = 3;
+  currentPage: number = 1;
   constructor(private productService : ProductService) {
   }
   ngOnInit() {
@@ -22,10 +25,17 @@ export class ProductsComponent implements OnInit{
 
   getProducts(){
     //first method
-    this.productService.getProducts(1,2)
+    this.productService.getProducts(this.currentPage,this.pageSize)
       .subscribe({
-        next: data => {
-          this.products = data
+        next: (resp) => {
+          this.products = resp.body as Product[];
+          console.log(this.products);
+          let totalProducts:number = parseInt(resp.headers.get('x-total-count')!);
+          console.log(totalProducts);
+          this.totalPages = Math.floor(totalProducts / this.pageSize);
+          if(totalProducts % this.pageSize != 0){
+            this.totalPages = this.totalPages+1;
+          }
         },
         error: err => {
           console.log(err)
@@ -65,5 +75,10 @@ export class ProductsComponent implements OnInit{
         this.products = data;
       }
     });
+  }
+
+  handleGoToPage(page: number) {
+    this.currentPage = page;
+    this.getProducts();
   }
 }
