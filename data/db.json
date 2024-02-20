@@ -1,28 +1,34 @@
 {
   "products": [
     {
-      "id": 2,
+      "id": 1,
       "name": "Smart Phone",
       "price": 1600,
       "checked": true
     },
     {
-      "name": "laptop",
-      "price": "4000",
+      "name": "Computer",
+      "price": 5000,
       "checked": true,
-      "id": 6
+      "id": 2
     },
     {
-      "name": "laptop",
-      "price": "4000",
+      "name": "Phone",
+      "price": 6000,
       "checked": true,
-      "id": 6
+      "id": 3
     },
     {
-      "name": "laptop",
-      "price": "4000",
+      "name": "Printer",
+      "price": 2000,
       "checked": true,
-      "id": 6
+      "id": 4
+    },
+    {
+      "name": "AOC",
+      "price": 6000,
+      "checked": true,
+      "id": 5
     }
   ]
 }

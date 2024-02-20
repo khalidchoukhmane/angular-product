@@ -10,8 +10,8 @@ export class ProductService {
   //injectoin de dependance de http permet la communication avec notre back-end json
   constructor(private http:HttpClient) { }
 
-  public getProducts():Observable<Array<Product>>{
-    return this.http.get<Array<Product>>("http://localhost:8089/products");
+  public getProducts(page : number=1, size:number=4):Observable<Array<Product>>{
+    return this.http.get<Array<Product>>(`http://localhost:8089/products?_page=${page}&_limit${size}`);
   }
   public checkProduct(product: Product) : Observable<Product>{
     return this.http.patch<Product>(`http://localhost:8089/products/${product.id}`, {checked:!product.checked});

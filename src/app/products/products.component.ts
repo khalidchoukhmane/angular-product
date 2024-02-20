@@ -22,9 +22,11 @@ export class ProductsComponent implements OnInit{
 
   getProducts(){
     //first method
-    this.productService.getProducts()
+    this.productService.getProducts(1,2)
       .subscribe({
-        next: data => this.products = data,
+        next: data => {
+          this.products = data
+        },
         error: err => {
           console.log(err)
         }
